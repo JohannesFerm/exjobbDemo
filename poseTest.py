@@ -141,6 +141,8 @@ class PoseEstimator():
                 try:
                     landmarks = mp_res.pose_landmarks.landmark
                 except:
+                    cv2.imshow('Mediapipe Feed', image)
+                    cv2.waitKey(1)
                     continue
 
                 self.mp_drawing.draw_landmarks(image, mp_res.pose_landmarks, self.mp_pose.POSE_CONNECTIONS)
@@ -215,6 +217,6 @@ class PoseEstimator():
         cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    server_url = "http://192.168.0.2:5000/command"  # Replace with your server URL
+    server_url = "http://192.168.4.1:5000/command"  # Replace with your server URL
     pose_estimator = PoseEstimator(server_url)
     pose_estimator.run()
